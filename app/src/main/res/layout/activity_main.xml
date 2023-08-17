@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- TODO: impl -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/searchScreen"
+        android:name="blekel.giphy.feature.search.SearchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
