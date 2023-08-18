@@ -6,6 +6,7 @@ import androidx.databinding.Observable.OnPropertyChangedCallback
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import blekel.giphy.R
 import blekel.giphy.data.GiphyService
 import blekel.giphy.data.SearchPagination
@@ -16,6 +17,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import io.reactivex.rxjava3.core.Observable as RxObservable
@@ -66,8 +69,11 @@ class SearchViewModel(
             hasNoData -> context.getString(R.string.search_empty_no_data)
             else -> ""
         }
-        emptyMessage.set(emptyText)
-        isEmptyMessageVisible.set(hasNoData)
+        viewModelScope.launch {
+            delay(200L)
+            emptyMessage.set(emptyText)
+            isEmptyMessageVisible.set(hasNoData)
+        }
     }
 
     fun checkLoadNext(lastVisiblePosition: Int) {
