@@ -20,7 +20,9 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import io.reactivex.rxjava3.core.Observable as RxObservable
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel(
+    private val giphyService: GiphyService
+) : ViewModel() {
 
     val emptyMessage = ObservableField("")
     val isEmptyMessageVisible = ObservableBoolean()
@@ -32,8 +34,6 @@ class SearchViewModel : ViewModel() {
     val itemsObservable = BehaviorSubject.create<List<SearchListItem>>()
 
     private val offsetObservable = BehaviorSubject.create<Int>()
-
-    private val giphyService = GiphyService()
 
     val gridColumnsCount = 3
     private val pageSize = 15 * gridColumnsCount

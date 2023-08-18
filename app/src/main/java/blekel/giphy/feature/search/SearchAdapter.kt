@@ -1,20 +1,21 @@
 package blekel.giphy.feature.search
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import blekel.giphy.databinding.SearchListItemBinding
 import blekel.giphy.util.UiUtils
-import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import org.koin.core.component.KoinComponent
 import timber.log.Timber
 
-class SearchAdapter(context: Context, gridColumnsCount: Int) :
-    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(
+    private val glide: RequestManager,
+    gridColumnsCount: Int,
+) : RecyclerView.Adapter<SearchAdapter.ViewHolder>(), KoinComponent {
 
     private var items = listOf<SearchListItem>()
-    private val glide = Glide.with(context)
     private val itemDimension = UiUtils.getScreenWidth() / gridColumnsCount
 
     fun updateItems(values: List<SearchListItem>) {

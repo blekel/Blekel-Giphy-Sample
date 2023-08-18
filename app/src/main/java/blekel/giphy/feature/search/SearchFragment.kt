@@ -6,26 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import blekel.giphy.databinding.FragmentSearchBinding
+import com.bumptech.glide.RequestManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
+    private val viewModel: SearchViewModel by viewModel()
+    private val glide: RequestManager by inject()
+
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: SearchViewModel
     private lateinit var adapter: SearchAdapter
+
     private var disposables = CompositeDisposable()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
-        adapter = SearchAdapter(context, viewModel.gridColumnsCount)
+        adapter = SearchAdapter(glide, viewModel.gridColumnsCount)
     }
 
     override fun onCreateView(
