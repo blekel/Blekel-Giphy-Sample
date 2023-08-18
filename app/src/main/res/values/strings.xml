@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Blekel Giphy Sample</string>
-    <string name="search_empty">What would I be looking for?</string>
+    <string name="search_empty_no_query">What would I be looking for?</string>
+    <string name="search_empty_no_data">Nothing found</string>
     <string name="search_input_hint">Query</string>
 </resources>

@@ -13,7 +13,7 @@ class GiphyServiceTests {
 
     @Test
     fun testSearch() {
-        val response = service.search("sunny")
+        val response = service.search(query = "sunny", limit = 30, offset = 0)
         println(json.encodeToString(response))
 
         assertNotNull(response)

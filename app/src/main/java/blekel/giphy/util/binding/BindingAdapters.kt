@@ -1,6 +1,7 @@
 package blekel.giphy.util.binding
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import kotlin.math.roundToInt
 
@@ -20,5 +21,11 @@ object BindingAdapters {
         view.layoutParams = view.layoutParams.apply {
             height = value.roundToInt()
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:visibility")
+    fun setVisibility(view: View, value: Boolean) {
+        view.isVisible = value
     }
 }

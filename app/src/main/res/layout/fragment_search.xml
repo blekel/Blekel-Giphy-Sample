@@ -23,16 +23,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/emptyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center_horizontal"
-            android:text="@string/search_empty"
+            android:text="@{model.emptyMessage}"
             android:textColor="@color/gray"
             android:textSize="16sp"
+            android:visibility="@{model.isEmptyMessageVisible}"
             app:layout_constraintBottom_toBottomOf="@id/searchResultList"
-            app:layout_constraintTop_toTopOf="@id/searchResultList" />
+            app:layout_constraintTop_toTopOf="@id/searchResultList"
+            tools:text="@string/search_empty_no_query" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/queryField"
